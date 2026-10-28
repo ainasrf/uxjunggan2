@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 390">
+<!-- rotate the entire SVG around bottom center for pull animation -->
+<g stroke="#242424" stroke-linecap="round" stroke-linejoin="round">
+<rect x="42" y="300" width="75" height="73" rx="18" fill="white" stroke-width="3"/>
+<path d="M83 326 L110 67" fill="none" stroke-width="17"/>
+<path d="M83 326 L110 67" fill="none" stroke="white" stroke-width="11"/>
+<circle cx="110" cy="58" r="43" fill="#d71920" stroke-width="3"/>
+<path d="M91 40 Q105 24 122 33" fill="none" stroke="white" stroke-width="6"/>
+<path d="M88 77 l6 7 M120 86 l8 -7" stroke="#a71920" stroke-width="2" fill="none"/>
+</g>
+</svg>

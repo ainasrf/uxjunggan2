@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 680">
+<!-- transparent background; thin hand-drawn outlines; empty reel windows -->
+<g fill="white" stroke="#282828" stroke-linejoin="round" stroke-linecap="round">
+<path d="M125 196 Q124 147 176 141 Q443 123 717 141 Q766 147 767 198 L769 454 L809 594 Q814 614 793 621 L96 621 Q77 617 86 591 L125 454 Z" stroke-width="3.1"/>
+<path d="M134 192 Q138 156 179 152 Q450 134 714 152 Q755 158 756 195" fill="none" stroke-width="1.3"/>
+<path d="M125 196 L767 196 M125 454 L769 454 M86 592 L809 592" fill="none" stroke-width="2.5"/>
+<path d="M130 463 L763 463 M96 609 L794 609" fill="none" stroke-width="1.2"/>
+<path d="M112 621 L113 637 L143 637 L147 621 M750 621 L752 637 L781 637 L783 621" stroke-width="2.2"/>
+</g>
+<g fill="white" stroke="#222" stroke-width="3" stroke-linejoin="round">
+<rect x="171" y="222" width="167" height="211" rx="17"/>
+<rect x="366" y="222" width="167" height="211" rx="17"/>
+<rect x="561" y="222" width="167" height="211" rx="17"/>
+</g>
+<g fill="none" stroke="#666" stroke-width="1.2" stroke-linecap="round">
+<rect x="178" y="230" width="153" height="195" rx="12"/>
+<rect x="373" y="230" width="153" height="195" rx="12"/>
+<rect x="568" y="230" width="153" height="195" rx="12"/>
+<path d="M145 206 l-5 11 M752 208 l-5 10 M111 572 l8 -16 M785 567 l-8 -13"/>
+</g>
+<g fill="white" stroke="#292929" stroke-width="2.4"><circle cx="143" cy="216" r="7"/><circle cx="748" cy="216" r="7"/><circle cx="145" cy="437" r="7"/><circle cx="746" cy="437" r="7"/><circle cx="121" cy="576" r="7"/><circle cx="771" cy="576" r="7"/></g>
+<g fill="none" stroke="#888" stroke-width="1"><path d="M93 599 l15 -7 M108 604 l18 -7 M764 603 l20 -9 M134 182 l15 -8 M730 174 l14 7"/></g>
+</svg>
