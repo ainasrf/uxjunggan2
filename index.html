@@ -1,0 +1,1679 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Date For One</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Patrick+Hand&display=swap');
+
+/* GLOBAL */
+* { box-sizing: border-box; }
+html, body { 
+  width: 100%; 
+  height: 100%; 
+  margin: 0; 
+  overflow: hidden; 
+}
+
+body { 
+  background: white; 
+  color: #222; 
+  font-family: 'Patrick Hand', cursive; 
+}
+
+button, input { 
+  font: inherit;
+   }
+
+/* NAVBAR */
+nav {
+  width: 100%; 
+  height: 85px; 
+  padding: 0 45px;
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  border-bottom: 2px solid #d71920; 
+  background: white;
+}
+
+.logo { 
+  color: #d71920; 
+  font-size: 26px; 
+  font-weight: bold; 
+  letter-spacing: 2px; 
+  cursor: pointer;
+}
+
+.nav-right { 
+  display: flex; 
+  align-items: center; 
+  gap: 35px; 
+}
+
+.nav-right a { 
+  color: #d71920; 
+  font-size: 22px; 
+  text-decoration: none; 
+}
+
+.nav-right a:hover { 
+  text-decoration: underline; 
+}
+
+.menu { 
+  color: #d71920; 
+  font-size: 28px; 
+}
+
+/* LANDING PAGE */
+.landing {
+  position: relative; 
+  display: flex; 
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  height: calc(100dvh - 85px); 
+  min-height: 0;
+  overflow: hidden; 
+  padding: 20px;
+}
+
+.title {
+  font-family: 'Permanent Marker', cursive; 
+  color: #d71920;
+  font-size: clamp(55px, 9vw, 135px); 
+  line-height: .95;
+  text-align: center; 
+  margin: 0; 
+  transform: rotate(-3deg);
+  position: relative; z-index: 2;
+}
+
+.title span { 
+  display: block; 
+}
+
+.tagline {
+  margin-top: 20px; 
+  font-size: 24px; 
+  letter-spacing: 2px;
+  text-align: center; 
+  position: relative; z-index: 2;
+}
+
+.red-line {
+  width: 160px; 
+  height: 4px; 
+  background: #d71920;
+  margin-top: 12px; 
+  transform: rotate(-3deg); 
+  border-radius: 50%;
+}
+
+/* NAME INPUT */
+.name-form {
+  display: flex; 
+  align-items: center; 
+  gap: 20px;
+  margin-top: 25px; 
+  width: min(680px, 90%);
+  position: relative; z-index: 2;
+}
+
+.name-form input {
+  flex: 1; 
+  min-width: 0; 
+  padding: 15px 20px;
+  border: 2px solid #222; 
+  background: white;
+  font-size: 22px; 
+  outline: none;
+}
+
+.name-form input:focus { 
+  border-color: #d71920; 
+}
+
+.name-form button {
+  padding: 13px 30px; 
+  background: white;
+  border: 2px solid #d71920; 
+  border-radius: 50px;
+  color: #d71920; 
+  font-size: 23px;
+  cursor: pointer; 
+  transition: .2s;
+}
+
+.name-form button:hover { 
+  background: #d71920; 
+  color: white; 
+  transform: rotate(-3deg); 
+}
+
+/* LANDING DECORATIONS */
+.doodle { 
+  position: absolute; 
+  color: #222; 
+  font-size: 75px; z-index: 1; 
+}
+
+.airplane {
+  top: 13%; 
+  left: 15%;
+  animation: airplaneFloat 5s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes airplaneFloat {
+  0% { transform: translate(-20px, 5px) rotate(-25deg); }
+  50% { transform: translate(20px, -12px) rotate(-15deg); }
+  100% { transform: translate(65px, 5px) rotate(-25deg); }
+}
+
+.map { 
+  top: 13%; 
+  right: 13%; 
+  transform: rotate(12deg); 
+}
+
+.photos { 
+  bottom: 14%; 
+  left: 10%; 
+  transform: rotate(-12deg); 
+}
+
+.ticket { 
+  bottom: 17%; 
+  right: 11%; 
+  transform: rotate(15deg); 
+}
+
+.annotation {
+  position: absolute; 
+  font-size: 20px; 
+  letter-spacing: 2px;
+  line-height: 1.1; z-index: 1;
+}
+
+.note1 { top: 35%; left: 7%; transform: rotate(-12deg); }
+.note2 { top: 35%; right: 5%; transform: rotate(12deg); }
+.note3 { bottom: 8%; left: 8%; transform: rotate(-8deg); }
+.note4 { bottom: 9%; right: 7%; transform: rotate(9deg); }
+.star { position: absolute; font-size: 35px; }
+.star1 { left: 25%; top: 53%; }
+.star2 { right: 23%; bottom: 32%; }
+.star3 { right: 13%; top: 58%; }
+
+/* MY DATES PAGE */
+.my-dates-page {
+  display: none; height: calc(100dvh - 85px); min-height: 0;
+  overflow: hidden; padding: 35px 6%; background: white;
+}
+.my-dates-title {
+  font-family: 'Permanent Marker', cursive;
+  font-size: clamp(35px, 4vw, 55px); color: #d71920;
+  text-align: center; margin: 0 0 30px; transform: rotate(-2deg);
+}
+.dates-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+.date-box {
+  height: min(350px, 48dvh); background: #ffe4e8;
+  border-radius: 25px; transition: transform .2s;
+}
+.date-box:hover { 
+  transform: translateY(-5px); 
+}
+
+/* MY DATES EMPTY STATE */
+
+.my-dates-empty {
+  display: none;
+  height: 65%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.my-dates-empty span {
+  font-size: 75px;
+  color: #d71920;
+}
+
+.my-dates-empty h2 {
+  font-family: 'Permanent Marker', cursive;
+  color: #d71920;
+  font-size: 42px;
+  margin: 10px 0;
+}
+
+.my-dates-empty p {
+  font-size: 22px;
+  margin: 5px 0 25px;
+}
+
+.my-dates-empty button {
+  background: white;
+  border: 2px solid #d71920;
+  color: #d71920;
+  padding: 12px 28px;
+  border-radius: 40px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* SAVED DATE CARDS */
+
+.dates-grid {
+  max-height: 65dvh;
+  overflow-y: auto;
+  padding: 5px;
+}
+
+.saved-date-card {
+  background: #ffe4e8;
+  border-radius: 25px;
+  padding: 25px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.saved-date-card h2 {
+  font-family: 'Permanent Marker', cursive;
+  color: #d71920;
+  font-size: 26px;
+  line-height: 1.1;
+  margin: 10px 0;
+}
+
+.saved-date-card h3 {
+  font-size: 20px;
+  margin: 0 0 10px;
+}
+
+.saved-date-card p {
+  font-size: 18px;
+  line-height: 1.3;
+}
+
+.saved-date-card .saved-label {
+  color: #d71920;
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+
+.saved-date-card button {
+  align-self: flex-start;
+  border: 2px solid #d71920;
+  border-radius: 30px;
+  background: white;
+  color: #d71920;
+  padding: 8px 18px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.saved-date-card button:hover {
+  background: #d71920;
+  color: white;
+}
+
+.saved-date-image{
+  width: 100%;
+  height: 130px;
+  object-fit: contain;
+  display: block;
+  margin: 5px auto 10px;
+}
+
+
+/* SLOT MACHINE PAGE */
+.machine-page {
+  display: none; 
+  height: calc(100dvh - 85px); 
+  min-height: 0;
+  padding: 12px 20px 18px; 
+  overflow: hidden;
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center;
+  gap: 0;
+}
+
+/* MACHINE BACKGROUND DOODLES */
+
+.machine-page {
+  position: relative;
+}
+
+.machine-doodle,
+.machine-note {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.machine-doodle {
+  font-size: 65px;
+  color: #222;
+}
+
+.machine-plane {
+  top: 15%;
+  left: 12%;
+  animation: airplaneFloat 5s ease-in-out infinite alternate;
+}
+
+.machine-star1 {
+  top: 42%;
+  left: 8%;
+  font-size: 45px;
+}
+
+.machine-star2 {
+  bottom: 17%;
+  right: 12%;
+  font-size: 50px;
+}
+
+.machine-heart {
+  top: 20%;
+  right: 13%;
+  color: #d71920;
+  transform: rotate(15deg);
+}
+
+.machine-note {
+  font-size: 20px;
+  letter-spacing: 2px;
+  line-height: 1.2;
+}
+
+.machine-note1 {
+  bottom: 18%;
+  left: 7%;
+  transform: rotate(-10deg);
+}
+
+.machine-note2 {
+  top: 42%;
+  right: 5%;
+  transform: rotate(10deg);
+}
+
+/* KEEP MACHINE ABOVE DECORATIONS */
+
+.machine-heading,
+.machine-instruction,
+.machine-container {
+  position: relative;
+  z-index: 1;
+}
+
+
+.machine-heading {
+  font-family: 'Permanent Marker', cursive; 
+  color: #d71920;
+  font-size: clamp(26px, 3vw, 38px); 
+  line-height: 1.1;
+  text-align: center; 
+  margin: 0 0 5px;
+  transform: rotate(-2deg); 
+  flex-shrink: 0;
+}
+
+.machine-instruction {
+  font-size: 18px; 
+  text-align: center;
+  margin: 0 0 12px; 
+  flex-shrink: 0;
+}
+
+/* MACHINE ARTWORK: ONE SIZE CONTROL, NO CONFLICTING RULES */
+.machine-container {
+  position: relative;
+  width: min(750px, 88vw, 85dvh);
+  aspect-ratio: 900 / 680;
+  height: auto;
+  flex: 0 1 auto;
+  min-height: 0;
+  margin: 0 auto;
+}
+
+
+.machine-body {
+  position: absolute; 
+  inset: 0; 
+  width: 100%; 
+  height: 100%;
+  display: block; 
+  pointer-events: none;
+}
+
+
+/* THREE REEL WINDOWS */
+.reel-window {
+  position: absolute; 
+  top: 34%; 
+  width: 17%; 
+  height: 28.5%;
+  background: white; 
+  overflow: hidden; 
+  border-radius: 10px;
+}
+
+
+.reel-one { left: 19.8%; }
+.reel-two { left: 41.5%; }
+.reel-three { left: 63.1%; }
+.reel-strip {
+  position: absolute; 
+  top: 50%; 
+  left: 0;
+  width: 100%; 
+  height: auto; 
+  display: block; 
+  max-width: none;
+  transform: translateY(0); 
+  transition: transform .2s ease-out;
+}
+
+.question {
+  position: absolute; 
+  inset: 0; 
+  display: grid; 
+  place-items: center;
+  font-family: 'Permanent Marker', cursive;
+  font-size: clamp(30px, 5vw, 65px); 
+  background: white;
+}
+
+
+.question.hide { display: none; }
+
+
+/* RED LEVER */
+.lever-button {
+  position: absolute; 
+  left: 83%; 
+  top: 25%; 
+  width: 15%; 
+  height: 58%;
+  padding: 0; 
+  border: 0; 
+  background: transparent; 
+  cursor: pointer;
+  transform-origin: 48% 85%; 
+  transition: transform .35s ease;
+}
+
+.lever-button img { display: block; width: 100%; height: 100%; }
+.lever-button.pulled { transform: rotate(40deg); }
+.lever-button:disabled { cursor: default; }
+
+/* PULL ME ANNOTATION */
+
+.pull-hint {
+  position: absolute;
+  top: 15%;
+  right: -13%;
+  color: #d71920;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 22px;
+  transform: rotate(8deg);
+  z-index: 2;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.pull-hint span {
+  display: inline-block;
+  font-size: 40px;
+  animation: pointLever 1s ease-in-out infinite alternate;
+  transform: scaleX(-1) translateY(15px);
+}
+
+@keyframes pointLever {
+  from { transform: scaleX(-1) translate(20px, 35px); }
+  to { transform: scaleX(-1) translate(20px, 45px); }
+}
+
+/* LEGACY RESULT STYLES (IF STILL PRESENT) */
+.spin-result {
+  display: none; 
+  text-align: center; 
+  margin-top: 0;
+  padding: 8px 16px; 
+  border: 2px dashed #d71920;
+  border-radius: 16px; 
+  max-width: 550px; 
+  width: 90%;
+}
+
+
+.spin-result h3 { color: #d71920; font-size: 24px; margin: 0 0 8px; }
+.spin-result p { font-size: 17px; margin: 5px; }
+.spin-again { color: #d71920; font-size: 20px; margin-top: 15px; }
+
+/* TICKET OVERLAY */
+.ticket-overlay {
+  position: fixed; 
+  inset: 0; 
+  z-index: 1000;
+  display: none; 
+  align-items: center; 
+  justify-content: center;
+  background: rgba(0, 0, 0, .58); 
+  padding: 25px;
+}
+
+
+.ticket-overlay.show { display: flex; animation: overlayFade .35s ease forwards; }
+
+@keyframes overlayFade { from { opacity: 0; } to { opacity: 1; } }
+
+.ticket-popup {
+  width: min(760px, 94vw); 
+  display: flex; 
+  flex-direction: column;
+  align-items: center; 
+  gap: 26px; 
+  animation: ticketAppear .5s ease both;
+}
+
+@keyframes ticketAppear {
+  from { opacity: 0; transform: translateY(30px) scale(.92); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.date-ticket {
+  width: 100%; 
+  min-height: 330px; 
+  background: #f7f3ee;
+  border: 2px solid #d71920; 
+  border-radius: 12px;
+  display: grid; 
+  grid-template-columns: 55px minmax(0, 1fr) 30%;
+  overflow: hidden; 
+  box-shadow: 5px 7px 0 rgba(0,0,0,.12);
+}
+
+.ticket-stub {
+  border-right: 2px dashed #d71920;
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  padding: 0;
+}
+
+.ticket-stub span {
+  color: #d71920; font-family: 'Permanent Marker', cursive;
+  font-size: 19px; letter-spacing: 2px;
+  writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap;
+}
+
+.ticket-details {
+  padding: 24px 22px; display: flex; flex-direction: column;
+  justify-content: center; min-width: 0;
+}
+
+.ticket-top { color: #d71920; font-size: 17px; letter-spacing: 2px; margin: 0 0 18px; }
+
+.ticket-details h2 {
+  font-family: 'Permanent Marker', cursive; 
+  color: #d71920;
+  font-size: clamp(23px, 3vw, 35px); 
+  line-height: 1.1;
+  margin: 0 0 14px; 
+  overflow-wrap: anywhere;
+}
+
+.ticket-details h3 { font-size: 21px; margin: 0 0 15px; line-height: 1.2; }
+.ticket-mission { font-size: 19px; line-height: 1.3; margin: 0; }
+.ticket-number { color: #d71920; font-size: 15px; margin: 24px 0 0; }
+.ticket-picture {
+  background: #ffe4e8; 
+  border-left: 2px dashed #d71920;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+  justify-content: center; 
+  gap: 10px; 
+  padding: 15px; 
+  text-align: center;
+}
+
+.ticket-picture-icon { color: #d71920; font-size: 80px; }
+.ticket-picture span { color: #d71920; font-size: 18px; line-height: 1.1; }
+.ticket-location-image {
+  width: 100%; 
+  max-width: 210px; 
+  height: 190px;
+  object-fit: contain; 
+  display: block;
+}
+
+.ticket-actions { display: flex; justify-content: center; gap: 18px; }
+.ticket-actions button {
+  font-family: 'Patrick Hand', cursive; 
+  font-size: 23px;
+  padding: 12px 32px; 
+  border-radius: 50px;
+  cursor: pointer; 
+  transition: .2s ease;
+}
+
+.keep-date-btn { background: #d71920; border: 2px solid #d71920; color: white; }
+.keep-date-btn:hover { background: #ad1118; transform: rotate(-2deg); }
+.redraw-btn { background: white; border: 2px solid #d71920; color: #d71920; }
+.redraw-btn:hover { background: #ffe4e8; transform: rotate(2deg); }
+
+/* SMALL SCREENS */
+@media (max-width: 850px) {
+  nav { padding: 0 20px; }
+  .logo { font-size: 20px; }
+  .nav-right { gap: 15px; }
+  .nav-right a { font-size: 17px; }
+  .title { font-size: clamp(55px, 12vw, 110px); }
+  .tagline { font-size: 18px; }
+  .doodle { font-size: 45px; opacity: .5; }
+  .annotation { display: none; }
+  .name-form { flex-direction: column; }
+  .name-form input, .name-form button { width: 100%; }
+  .machine-container { width: min(640px, 90vw, 72dvh); }
+}
+@media (max-width: 750px) {
+  .dates-grid { grid-template-columns: 1fr; }
+  .date-box { height: min(250px, 35dvh); }
+  .my-dates-title { font-size: 45px; }
+}
+@media (max-width: 600px) {
+  .date-ticket { grid-template-columns: 35px minmax(0, 1fr) 24%; min-height: 250px; }
+  .ticket-details { padding: 12px; }
+  .ticket-details h3 { font-size: 16px; }
+  .ticket-mission { font-size: 15px; }
+  .ticket-top { font-size: 12px; }
+  .ticket-stub span { font-size: 13px; }
+  .ticket-picture-icon { font-size: 40px; }
+  .ticket-picture span { font-size: 12px; }
+  .ticket-location-image { height: 120px; }
+  .ticket-actions button { font-size: 17px; padding: 10px 18px; }
+}
+
+/* MINI CELEBRATION */
+.celebration-piece {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  pointer-events: none;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 26px;
+  color: #d71920;
+  animation: celebrationPop 850ms ease-out forwards;
+}
+
+@keyframes celebrationPop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translate(
+        calc(-50% + var(--move-x)),
+        calc(-50% + var(--move-y))
+      )
+      rotate(var(--rotate))
+      scale(1.2);
+  }
+}
+
+.location-button {
+  background: transparent;
+  border: 1px solid #d71920;
+  color: #d71920;
+  border-radius: 20px;
+  padding: 7px 14px;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.location-button:hover {
+  background: #d71920;
+  color: white;
+}
+
+/* VISITED DATE */
+.visited-stamp {
+  color: #d71920;
+  border: 2px dashed #d71920;
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 16px;
+  transform: rotate(-3deg);
+  align-self: flex-start;
+}
+
+.date-note {
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.date-note-input {
+  width: 100%;
+  min-height: 75px;
+  padding: 10px;
+  border: 1px solid #d71920;
+  border-radius: 10px;
+  background: white;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 17px;
+  resize: vertical;
+}
+
+.date-note-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 9998;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.date-note-popup {
+  width: min(450px, 90vw);
+  background: #fff6f2;
+  border: 2px solid #d71920;
+  border-radius: 18px;
+  padding: 30px;
+  text-align: center;
+}
+
+.date-note-popup h2 {
+  font-family: 'Permanent Marker', cursive;
+  color: #d71920;
+  font-size: 30px;
+}
+
+.date-note-popup p {
+  font-size: 20px;
+}
+
+.date-note-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.date-note-actions button {
+  border: 2px solid #d71920;
+  background: white;
+  color: #d71920;
+  border-radius: 25px;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 17px;
+}
+
+.date-note-actions button:hover {
+  background: #d71920;
+  color: white;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav>
+  <div class="logo" id="homeLogo">
+    ✈ DATE FOR ONE
+  </div>
+
+  <div class="nav-right">
+    <a href="#" id="myDatesLink">my dates</a>
+  </div>
+</nav>
+
+<!-- LANDING PAGE -->
+
+<section class="landing" id="landingPage">
+
+  <div class="doodle airplane">✈</div>
+  <div class="doodle map">⌖</div>
+  <div class="doodle photos">▧</div>
+  <div class="doodle ticket">▱</div>
+
+  <div class="annotation note1">
+    RANDOM<br>PLACES ↝
+  </div>
+
+  <div class="annotation note2">
+    ↜ NEW<br>EXPERIENCES
+  </div>
+
+  <div class="annotation note3">
+    SOLO ADVENTURES ↗
+  </div>
+
+  <div class="annotation note4">
+    JUST FOR YOU ↖
+  </div>
+
+  <div class="star star1">✧</div>
+  <div class="star star2">✧</div>
+  <div class="star star3">✧</div>
+
+  <h1 class="title">
+    <span>DATE</span>
+    <span>FOR ONE</span>
+  </h1>
+
+  <p class="tagline">
+    YOUR NEXT SOLO DATE IS ONE SPIN AWAY.
+  </p>
+
+  <div class="red-line"></div>
+
+  <form class="name-form" id="nameForm">
+    <input
+      type="text"
+      id="username"
+      placeholder="WHAT'S YOUR NAME?"
+      maxlength="30"
+      required
+    >
+
+    <button type="submit">
+      LET'S GO →
+    </button>
+  </form>
+
+</section>
+
+<!-- MY DATES PAGE -->
+
+<section class="my-dates-page" id="myDatesPage">
+
+  <h1 class="my-dates-title">MY DATES</h1>
+
+  <div class="my-dates-empty" id="myDatesEmpty">
+    <span>♡</span>
+    <h2>NO DATES YET!</h2>
+    <p>Your solo adventures will appear here.</p>
+    <button id="startDateBtn">LET'S GO ON A DATE →</button>
+  </div>
+
+  <div class="dates-grid" id="datesGrid"></div>
+
+</section>
+
+<!-- SLOT MACHINE PAGE -->
+
+<section class="machine-page" id="machinePage">
+
+  <!-- MACHINE PAGE DOODLES -->
+
+<div class="machine-doodle machine-plane">✈</div>
+<div class="machine-doodle machine-star1">✧</div>
+<div class="machine-doodle machine-star2">✧</div>
+<div class="machine-doodle machine-heart">♡</div>
+
+<div class="machine-note machine-note1">
+  LET FATE<br>DECIDE! ↝
+</div>
+
+<div class="machine-note machine-note2">
+  ↜ YOUR NEXT<br>ADVENTURE
+</div>
+
+  <h1 class="machine-heading" id="machineGreeting">
+    READY FOR YOUR DATE?
+  </h1>
+
+  <p class="machine-instruction">
+    Pull the red lever to find your next solo date!
+  </p>
+
+  <div class="machine-container">
+
+    <!-- MACHINE BODY -->
+    <img
+      class="machine-body"
+      src="images/machine-body.svg"
+      alt="Hand-drawn slot machine"
+    >
+
+    <!-- REEL 1: ACTIVITY -->
+    <div class="reel-window reel-one">
+      <img
+        class="reel-strip"
+        id="reel1"
+        src="images/reel-1-activities.png"
+        alt="Activity reel"
+      >
+      <div class="question">?</div>
+    </div>
+
+    <!-- REEL 2: DESTINATION -->
+    <div class="reel-window reel-two">
+      <img
+        class="reel-strip"
+        id="reel2"
+        src="images/reel-2-destinations.png"
+        alt="Destination reel"
+      >
+      <div class="question">?</div>
+    </div>
+
+    <!-- REEL 3: MISSION -->
+    <div class="reel-window reel-three">
+      <img
+        class="reel-strip"
+        id="reel3"
+        src="images/reel-3-missions.png"
+        alt="Mission reel"
+      >
+      <div class="question">?</div>
+    </div>
+
+    <div class="pull-hint">
+      PULL ME! <span>↘</span>
+    </div>
+
+    <!-- CLICKABLE LEVER -->
+    <button
+      class="lever-button"
+      id="lever"
+      type="button"
+      aria-label="Pull the lever to spin"
+    >
+      <img src="images/lever.svg" alt="">
+    </button>
+
+  </div>
+
+  <!-- TICKET POPUP -->
+<div class="ticket-overlay" id="ticketOverlay">
+
+  <div class="ticket-popup">
+
+    <div class="date-ticket">
+
+      <div class="ticket-stub">
+        <span>ADMIT ONE</span>
+      </div>
+
+      <div class="ticket-details">
+        <p class="ticket-top">✧ ENJOY YOUR DATE! ✧</p>
+
+        <h2 id="ticketPlace">SEONGSU-DONG</h2>
+
+        <h3 id="ticketActivity">
+          LITTLE TREASURE HUNT
+        </h3>
+
+        <p class="ticket-mission" id="ticketMission">
+          Explore something new!
+        </p>
+
+        <p class="ticket-number" id="ticketNumber">
+          TICKET NO. 001
+        </p>
+      </div>
+
+      <div class="ticket-picture">
+        <img
+          class="ticket-location-image"
+          id="ticketLocationImage"
+          src=""
+          alt="Your solo date destination"
+        >
+        <span id="ticketPictureLabel">YOUR NEXT ADVENTURE</span>
+      </div>
+
+    </div>
+
+    <div class="ticket-actions">
+      <button id="keepDateBtn" class="keep-date-btn">
+        KEEP DATE ♡
+      </button>
+
+      <button id="redrawBtn" class="redraw-btn">
+        ↻ REDRAW
+      </button>
+    </div>
+
+  </div>
+</div>
+
+ 
+
+</section>
+
+<script>
+
+// PAGE ELEMENTS
+
+const landingPage = document.getElementById("landingPage");
+const myDatesPage = document.getElementById("myDatesPage");
+const machinePage = document.getElementById("machinePage");
+
+const homeLogo = document.getElementById("homeLogo");
+const myDatesLink = document.getElementById("myDatesLink");
+
+const form = document.getElementById("nameForm");
+const username = document.getElementById("username");
+
+// SWITCH PAGES
+
+function showPage(page) {
+  landingPage.style.display = "none";
+  myDatesPage.style.display = "none";
+  machinePage.style.display = "none";
+
+  page.style.display =
+    page === landingPage || page === machinePage
+    ? "flex"
+    : "block";
+
+  window.scrollTo(0, 0);
+}
+
+// HOME / BACK TO MACHINE
+
+homeLogo.addEventListener("click", function() {
+
+  const savedName = sessionStorage.getItem("soloDateName");
+
+  if (savedName) {
+    document.getElementById("machineGreeting").textContent =
+      "READY, " + savedName.toUpperCase() + "?";
+
+    showPage(machinePage);
+  } else {
+    showPage(landingPage);
+  }
+
+});
+
+// DISPLAY SAVED DATES
+
+const savedDestinationImages = {
+  "Banpo Hangang Park": "images/banpo-hangang-park.png",
+  "Eunpyeong Hanok Village": "images/eunpyeong-hanok-village.png",
+  "Vinyl Hangang": "images/vinyl-hangang.png",
+  "Loft House Mullae": "images/loft-house-mullae.png",
+  "Ikseon-dong": "images/ikseon-dong.png",
+  "Hyehwa (Daehangno)": "images/hyehwa-daehangno.png",
+  "Seoul Forest": "images/seoul-forest.png",
+  "Seongsu-dong": "images/seongsu-dong.png",
+  "Yongsan Children's Garden": "images/yongsan-childrens-garden.png",
+  "Ui-dong Solbat Park": "images/ui-dong-solbat-park.png"
+};
+
+function showDateNoteEditor(date) {
+  const overlay = document.createElement("div");
+
+  overlay.className = "date-note-overlay";
+
+  overlay.innerHTML = `
+    <div class="date-note-popup">
+      <h2>DEAR DIARY... ♡</h2>
+      <p>How was your little adventure?</p>
+      <textarea
+        class="date-note-input"
+        maxlength="300"
+        placeholder="Today I..."
+      ></textarea>
+      <div class="date-note-actions">
+        <button class="save-note-btn">SAVE MEMORY ♡</button>
+        <button class="cancel-note-btn">CANCEL</button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+
+  const textarea = overlay.querySelector("textarea");
+  textarea.value = date.note || "";
+
+  overlay.querySelector(".cancel-note-btn")
+    .addEventListener("click", function() {
+      overlay.remove();
+    });
+
+  overlay.querySelector(".save-note-btn")
+    .addEventListener("click", function() {
+      const savedDates = JSON.parse(
+        localStorage.getItem("savedSoloDates") || "[]"
+      );
+
+      const updatedDates = savedDates.map(saved => {
+        if (saved.id === date.id) {
+          return {
+            ...saved,
+            visited: true,
+            note: textarea.value.trim()
+          };
+        }
+        return saved;
+      });
+
+      localStorage.setItem(
+        "savedSoloDates",
+        JSON.stringify(updatedDates)
+      );
+
+      overlay.remove();
+      renderMyDates();
+    });
+}
+
+function openDateLocation(place) {
+  const url = "https://www.google.com/maps/search/?api=1&query=" +
+    encodeURIComponent(place + ", Seoul, South Korea");
+
+  window.open(url, "_blank", "noopener,noreferrer");
+}
+
+function renderMyDates() {
+  const savedDates = JSON.parse(
+    localStorage.getItem("savedSoloDates") || "[]"
+  );
+
+  const grid = document.getElementById("datesGrid");
+  const empty = document.getElementById("myDatesEmpty");
+
+  grid.innerHTML = "";
+
+  if (savedDates.length === 0) {
+    empty.style.display = "flex";
+    grid.style.display = "none";
+    return;
+  }
+
+  empty.style.display = "none";
+  grid.style.display = "grid";
+
+  savedDates.forEach((date) => {
+
+    const card = document.createElement("div");
+    card.className = "saved-date-card";
+
+    const label = document.createElement("span");
+    label.className = "saved-label";
+    label.textContent = "♡ YOUR SOLO DATE";
+
+    const title = document.createElement("h2");
+    title.textContent = date.place;
+
+    const destinationImage = document.createElement("img");
+    destinationImage.className = "saved-date-image";
+    destinationImage.src = savedDestinationImages[date.place] || "";
+    destinationImage.alt = date.place;
+
+    const activity = document.createElement("h3");
+    activity.textContent = date.activity;
+
+    const mission = document.createElement("p");
+    mission.textContent = date.mission;
+
+    const removeButton = document.createElement("button");
+    removeButton.textContent = "REMOVE ×";
+
+    removeButton.addEventListener("click", function() {
+      const updated = savedDates.filter(
+        saved => saved.id !== date.id
+      );
+
+      localStorage.setItem(
+        "savedSoloDates",
+        JSON.stringify(updated)
+      );
+
+      renderMyDates();
+    });
+
+    const locationButton = document.createElement("button");
+
+    locationButton.textContent = "VIEW LOCATION ↗";
+    locationButton.className = "location-button";
+
+    locationButton.addEventListener("click", function() {
+      openDateLocation(date.place);
+    });
+
+    card.append(
+    label,
+    destinationImage,
+    title,
+    activity,
+    mission,
+    locationButton
+  );
+
+  if (date.visited) {
+    const stamp = document.createElement("div");
+    stamp.className = "visited-stamp";
+    stamp.textContent = "✓ DATE COMPLETED!";
+    card.appendChild(stamp);
+
+    if (date.note) {
+      const noteText = document.createElement("p");
+      noteText.className = "date-note";
+      noteText.textContent = "♡ " + date.note;
+      card.appendChild(noteText);
+    }
+
+    const editButton = document.createElement("button");
+    editButton.textContent = "EDIT NOTE ✎";
+
+    editButton.addEventListener("click", function() {
+      showDateNoteEditor(date);
+    });
+
+    card.appendChild(editButton);
+
+  } else {
+    const visitedButton = document.createElement("button");
+    visitedButton.textContent = "MARK AS VISITED ✓";
+
+    visitedButton.addEventListener("click", function() {
+      showDateNoteEditor(date);
+    });
+
+    card.appendChild(visitedButton);
+  }
+
+  card.appendChild(removeButton);
+  grid.appendChild(card);
+
+  });
+}
+
+
+
+
+// MY DATES
+
+      myDatesLink.addEventListener("click", function(event) {
+        event.preventDefault();
+        renderMyDates();
+        showPage(myDatesPage);
+      });
+
+// ENTER NAME
+
+form.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const name = username.value.trim();
+
+  if (!name) return;
+
+  sessionStorage.setItem("soloDateName", name);
+
+  document.getElementById("machineGreeting").textContent =
+    "READY, " + name.toUpperCase() + "?";
+
+  showPage(machinePage);
+});
+
+// ACTIVITY + MATCHING DESTINATIONS
+
+const activities = [
+  {
+    name: "Photo Walk",
+    places: [
+      { name: "Banpo Hangang Park", reelIndex: 0 },
+      { name: "Eunpyeong Hanok Village", reelIndex: 1 }
+    ]
+  },
+  {
+    name: "Cafe Hopping",
+    places: [
+      { name: "Vinyl Hangang", reelIndex: 2 },
+      { name: "Loft House Mullae", reelIndex: 3 }
+    ]
+  },
+  {
+    name: "Art & Exhibition",
+    places: [
+      { name: "Ikseon-dong", reelIndex: 4 },
+      { name: "Hyehwa (Daehangno)", reelIndex: 5 }
+    ]
+  },
+  {
+    name: "Little Treasure Hunt",
+    places: [
+      { name: "Seoul Forest", reelIndex: 6 },
+      { name: "Seongsu-dong", reelIndex: 7 }
+    ]
+  },
+  {
+    name: "Nature Escape",
+    places: [
+      { name: "Yongsan Children's Garden", reelIndex: 8 },
+      { name: "Ui-dong Solbat Park", reelIndex: 9 }
+    ]
+  }
+];
+
+// MISSIONS
+
+const missions = [
+  {
+    name: "3 Little Moments",
+    description: "Capture 3 things that catch your eye."
+  },
+  {
+    name: "Something New",
+    description: "Try or discover something new."
+  },
+  {
+    name: "Color Hunt",
+    description: "Find 3 things in the same color."
+  },
+  {
+    name: "Dear Me",
+    description: "Write one sentence about your day."
+  },
+  {
+    name: "A Little Detour",
+    description: "Explore one spot you've never noticed before."
+  },
+  {
+    name: "Curtain Call!",
+    description: "Watch a play you've never heard of before."
+  }
+];
+
+// REEL ELEMENTS
+
+const reelElements = [
+  document.getElementById("reel1"),
+  document.getElementById("reel2"),
+  document.getElementById("reel3")
+];
+
+const reelCounts = [5, 10, 6];
+
+const destinationImages = [
+  "banpo-hangang-park.png",
+  "eunpyeong-hanok-village.png",
+  "vinyl-hangang.png",
+  "loft-house-mullae.png",
+  "ikseon-dong.png",
+  "hyehwa-daehangno.png",
+  "seoul-forest.png",
+  "seongsu-dong.png",
+  "yongsan-childrens-garden.png",
+  "ui-dong-solbat-park.png"
+];
+
+const lever = document.getElementById("lever");
+const ticketOverlay = document.getElementById("ticketOverlay");
+const keepDateBtn = document.getElementById("keepDateBtn");
+const redrawBtn = document.getElementById("redrawBtn");
+
+let currentDate = null;
+
+let isSpinning = false;
+
+// RANDOM NUMBER
+
+function randomIndex(length) {
+  return Math.floor(Math.random() * length);
+}
+
+// POSITION REEL STRIP
+
+function setReelPosition(reelNumber, index, animate = false) {
+
+  const reel = reelElements[reelNumber];
+
+  const itemHeight = reel.clientWidth * (108 / 180);
+  const offset = (index + 0.5) * itemHeight;
+
+  reel.style.transition = animate
+    ? "transform 0.45s ease-out"
+    : "none";
+
+  reel.style.transform =
+    `translateY(-${offset}px)`;
+}
+
+// START SPIN
+
+function spinMachine() {
+  if (isSpinning) return;
+
+  isSpinning = true;
+  lever.disabled = true;
+  ticketOverlay.classList.remove("show");
+
+  // Remove question marks
+  document.querySelectorAll(".question").forEach(q => {
+    q.classList.add("hide");
+  });
+
+  // Choose one valid combination
+  const activityIndex = randomIndex(activities.length);
+  const activity = activities[activityIndex];
+
+  const place = activity.places[randomIndex(activity.places.length)];
+
+  // Special theatre mission only for Hyehwa
+  const allowedMissionCount =
+    place.reelIndex === 5 ? 6 : 5;
+
+  const missionIndex = randomIndex(allowedMissionCount);
+  const mission = missions[missionIndex];
+
+  const finalIndices = [
+    activityIndex,
+    place.reelIndex,
+    missionIndex
+  ];
+
+  // Pull lever
+  lever.classList.add("pulled");
+
+  setTimeout(() => {
+    lever.classList.remove("pulled");
+  }, 450);
+
+  // SPIN ALL THREE REELS
+
+const stopTimes = [1800, 2500, 3200];
+
+reelElements.forEach((reel, reelNumber) => {
+
+  let currentIndex = 0;
+
+  const spinTimer = setInterval(() => {
+
+    currentIndex =
+      (currentIndex + 1) % reelCounts[reelNumber];
+
+    setReelPosition(reelNumber, currentIndex);
+
+  }, 90);
+
+  // STOP EACH REEL AT ITS OWN TIME
+
+  setTimeout(() => {
+
+    clearInterval(spinTimer);
+
+    setReelPosition(
+      reelNumber,
+      finalIndices[reelNumber],
+      true
+    );
+
+  }, stopTimes[reelNumber]);
+
+});
+
+// SHOW TICKET AFTER ALL REELS STOP
+
+setTimeout(() => {
+
+  currentDate = {
+    place: place.name,
+    activity: activity.name,
+    mission: mission.description
+  };
+
+
+  document.getElementById("ticketPlace").textContent =
+    place.name.toUpperCase();
+
+  document.getElementById("ticketActivity").textContent =
+    activity.name.toUpperCase();
+
+  document.getElementById("ticketMission").textContent =
+    mission.description;
+
+  document.getElementById("ticketPictureLabel").textContent =
+    place.name.toUpperCase();
+
+  document.getElementById("ticketLocationImage").src =
+  "images/" + destinationImages[place.reelIndex];
+
+  ticketOverlay.classList.add("show");
+
+  lever.disabled = false;
+  isSpinning = false;
+
+}, 3900);
+}
+
+// CLICK LEVER
+
+lever.addEventListener("click", spinMachine);
+
+function miniCelebration() {
+  const symbols = ["♡", "✧", "✦", "☆", "♡", "✧", "✳"];
+
+  const centerX = window.innerWidth / 2;
+  const centerY = window.innerHeight / 2;
+
+  for (let i = 0; i < 14; i++) {
+    const piece = document.createElement("span");
+
+    piece.className = "celebration-piece";
+    piece.textContent = symbols[i % symbols.length];
+
+    const angle = (Math.PI * 2 * i) / 14;
+    const distance = 70 + Math.random() * 110;
+
+    piece.style.left = centerX + "px";
+    piece.style.top = centerY + "px";
+
+    piece.style.setProperty(
+      "--move-x",
+      Math.cos(angle) * distance + "px"
+    );
+
+    piece.style.setProperty(
+      "--move-y",
+      Math.sin(angle) * distance + "px"
+    );
+
+    piece.style.setProperty(
+      "--rotate",
+      Math.random() * 100 - 50 + "deg"
+    );
+
+    document.body.appendChild(piece);
+
+    piece.addEventListener("animationend", () => {
+      piece.remove();
+    });
+  }
+}
+
+// KEEP DATE
+
+keepDateBtn.addEventListener("click", function() {
+
+  if (!currentDate) return;
+
+  const savedDates = JSON.parse(
+    localStorage.getItem("savedSoloDates") || "[]"
+  );
+
+  savedDates.push({
+    ...currentDate,
+    id: Date.now()
+  });
+
+  localStorage.setItem(
+    "savedSoloDates",
+    JSON.stringify(savedDates)
+  );
+
+  ticketOverlay.classList.remove("show");
+
+  renderMyDates();
+  showPage(myDatesPage);
+  miniCelebration();
+
+});
+
+
+// REDRAW
+
+redrawBtn.addEventListener("click", function() {
+
+  ticketOverlay.classList.remove("show");
+
+  spinMachine();
+
+});
+
+document.getElementById("startDateBtn")
+  .addEventListener("click", function() {
+
+    const savedName = sessionStorage.getItem("soloDateName");
+
+    if (savedName) {
+      showPage(machinePage);
+    } else {
+      showPage(landingPage);
+    }
+
+  });
+
+
+</script>
+
+</body>
+</html>
